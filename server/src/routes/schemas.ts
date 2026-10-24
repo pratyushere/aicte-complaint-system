@@ -37,7 +37,7 @@ export const createComplaintSchema = z.object({
   institutionId: z.string().uuid('Invalid institution ID'),
   categoryId: z.string().uuid('Invalid category ID'),
   bureauId: z.string().uuid('Invalid bureau ID'),
-  createdById: z.string().uuid('Invalid creator user ID'),
+  createdById: z.string().uuid('Invalid creator user ID').optional(),
   assignedToId: z.string().uuid('Invalid assignee user ID').optional().nullable(),
   receivedDate: z.coerce.date().default(() => new Date()),
   subject: z.string().min(1, 'Subject is required').max(1000),
