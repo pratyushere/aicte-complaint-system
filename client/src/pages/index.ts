@@ -1,0 +1,12 @@
+export { DashboardPage } from './DashboardPage';
+export { InstitutionsPage } from './InstitutionsPage';
+export { InstitutionDetailPage } from './InstitutionDetailPage';
+export { ComplaintsPage } from './ComplaintsPage';
+export { ComplaintDetailPage } from './ComplaintDetailPage';
+export { RegisterComplaintPage } from './RegisterComplaintPage';
+export { OverlapsPage } from './OverlapsPage';
+export { CoordinationPage } from './CoordinationPage';
+export { NotificationsPage } from './NotificationsPage';
+export { ReportsPage } from './ReportsPage';
+export { UserManagementPage } from './UserManagementPage';
+export { SettingsPage } from './SettingsPage';
