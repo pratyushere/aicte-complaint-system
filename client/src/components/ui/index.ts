@@ -10,3 +10,6 @@ export type { Crumb } from './Breadcrumbs';
 export { PageHeader } from './PageHeader';
 export { LoadingState } from './LoadingState';
 export { ErrorState } from './ErrorState';
+export { Modal } from './Modal';
+export { CommandPalette } from './CommandPalette';
+export { ToastContainer } from './ToastContainer';

@@ -10,3 +10,5 @@ export { NotificationsPage } from './NotificationsPage';
 export { ReportsPage } from './ReportsPage';
 export { UserManagementPage } from './UserManagementPage';
 export { SettingsPage } from './SettingsPage';
+export { LoginPage } from './LoginPage';
+export { CitizenHomePage } from './CitizenHomePage';

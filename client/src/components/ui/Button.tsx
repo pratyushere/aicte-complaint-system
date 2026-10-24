@@ -1,8 +1,8 @@
 import { cn } from '@/lib/utils';
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
-type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'success';
-type ButtonSize = 'sm' | 'md' | 'lg';
+type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'success' | 'saffron';
+type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
@@ -14,21 +14,26 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    'bg-navy-800 text-white hover:bg-navy-700 active:bg-navy-900',
+    'bg-slate-900 text-white hover:bg-slate-800 active:bg-slate-950 shadow-xs border border-transparent font-medium',
   secondary:
-    'bg-white text-gray-700 hover:bg-gray-50 active:bg-gray-100 border border-gray-300',
+    'bg-white text-slate-700 hover:bg-slate-50 active:bg-slate-100 border border-slate-200 shadow-2xs font-medium',
+  outline:
+    'bg-transparent text-slate-700 hover:bg-slate-100 active:bg-slate-200 border border-slate-300 font-medium',
   ghost:
-    'bg-transparent text-gray-600 hover:bg-gray-100 hover:text-gray-800',
+    'bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-transparent font-medium',
   danger:
-    'bg-red-600 text-white hover:bg-red-700 active:bg-red-800',
+    'bg-red-600 text-white hover:bg-red-700 active:bg-red-800 shadow-xs border border-transparent font-medium',
   success:
-    'bg-green-600 text-white hover:bg-green-700 active:bg-green-800',
+    'bg-emerald-600 text-white hover:bg-emerald-700 active:bg-emerald-800 shadow-xs border border-transparent font-medium',
+  saffron:
+    'bg-amber-600 text-white hover:bg-amber-700 active:bg-amber-800 shadow-xs border border-transparent font-medium',
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
-  sm: 'px-3 py-1.5 text-xs gap-1.5',
-  md: 'px-4 py-2 text-sm gap-2',
-  lg: 'px-5 py-2.5 text-sm gap-2',
+  xs: 'px-2 py-1 text-xs gap-1 rounded-md',
+  sm: 'px-3 py-1.5 text-xs gap-1.5 rounded-lg',
+  md: 'px-4 py-2 text-sm gap-2 rounded-lg',
+  lg: 'px-5 py-2.5 text-sm gap-2.5 rounded-xl font-semibold',
 };
 
 export function Button({
@@ -44,8 +49,8 @@ export function Button({
   return (
     <button
       className={cn(
-        'inline-flex items-center justify-center font-medium rounded-md transition-colors duration-150 cursor-pointer',
-        'disabled:opacity-50 disabled:cursor-not-allowed',
+        'inline-flex items-center justify-center transition-all duration-150 cursor-pointer select-none',
+        'disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none active:scale-[0.98]',
         variantStyles[variant],
         sizeStyles[size],
         className,
@@ -54,7 +59,7 @@ export function Button({
       {...props}
     >
       {loading ? (
-        <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+        <svg className="animate-spin h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none">
           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
         </svg>
