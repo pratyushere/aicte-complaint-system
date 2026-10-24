@@ -5,7 +5,7 @@
    ============================================================ */
 
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
-import { User, UserRole } from '@/types';
+import type { User, UserRole } from '@/types';
 import { api, setCachedCsrfToken } from './api';
 
 interface AuthContextType {

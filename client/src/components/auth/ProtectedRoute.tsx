@@ -6,7 +6,7 @@
 
 import { Navigate, Outlet, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '@/lib/authContext';
-import { UserRole } from '@/types';
+import type { UserRole } from '@/types';
 import { ROLE_LABELS, ROLE_COLORS } from '@/lib/constants';
 import { ShieldAlert, ArrowLeft } from 'lucide-react';
 
