@@ -84,3 +84,21 @@ SIH/
 
 - **Never commit `.env` files** containing sensitive secrets or production database credentials to Git.
 - Refer to `server/.env.example` for required configuration keys.
+
+---
+
+## 👥 Fictional Demonstration Accounts
+
+All seed accounts are **fictional** development demonstration accounts with default password: `Password@123`.
+
+| Role | Email | Assignment / Scope | Default Landing |
+| :--- | :--- | :--- | :--- |
+| **System Administrator** | `admin.demo@fictional-aicte.example` | System-wide admin & user management | `/dashboard` |
+| **Regulation Bureau Officer** | `regulation.demo@fictional-aicte.example` | Regulation Bureau (`RB`) | `/complaints` |
+| **PGRC Officer** | `pgrc.demo@fictional-aicte.example` | Public Grievance Redressal Cell (`PGRC`) | `/complaints` |
+| **Other Bureau Officer** | `otherbureau.demo@fictional-aicte.example` | Other Bureau / Cell (`OTHER`) | `/complaints` |
+| **Regional Officer** | `regional.demo@fictional-aicte.example` | Western Region (`Western`) | `/institutions` |
+| **Senior Management** | `senior.demo@fictional-aicte.example` | Executive supervisory read-only | `/dashboard` |
+| **Read-Only Auditor** | `auditor.demo@fictional-aicte.example` | System-wide read-only audit | `/reports` |
+| **Inactive Test Officer** | `inactive.demo@fictional-aicte.example` | Deactivated account (`isActive: false`) | *Blocked (403)* |
+

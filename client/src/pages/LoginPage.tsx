@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAppStore } from '@/lib/store';
 import { DEMO_ACCOUNTS, ROLE_COLORS } from '@/lib/constants';
+import { api } from '@/lib/api';
 import {
   ShieldCheck,
   Lock,
@@ -14,6 +15,16 @@ import {
 } from 'lucide-react';
 import type { UserRole } from '@/types';
 
+const ROLE_LANDING_PAGES: Record<string, string> = {
+  SYSTEM_ADMIN: '/dashboard',
+  SENIOR_MANAGEMENT: '/dashboard',
+  PGRC_OFFICER: '/complaints',
+  REGULATION_BUREAU_OFFICER: '/complaints',
+  OTHER_BUREAU_OFFICER: '/complaints',
+  REGIONAL_OFFICER: '/institutions',
+  READ_ONLY_AUDITOR: '/reports',
+};
+
 export function LoginPage() {
   const { switchPersona, addToast } = useAppStore();
   const navigate = useNavigate();
@@ -24,7 +35,8 @@ export function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const from = (location.state as any)?.from?.pathname || '/';
+  const rawFrom = (location.state as any)?.from?.pathname;
+  const from = rawFrom && rawFrom !== '/' && rawFrom !== '/login' ? rawFrom : null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,31 +44,72 @@ export function LoginPage() {
     setLoading(true);
 
     try {
-      // Find matching demo account or default to admin
-      const match = DEMO_ACCOUNTS.find((a) => a.email.toLowerCase() === email.toLowerCase());
-      if (match) {
-        switchPersona(match.role as UserRole);
-      } else {
-        switchPersona('SYSTEM_ADMIN');
+      let resolvedRole: UserRole = 'SYSTEM_ADMIN';
+      try {
+        const res = await api.post<{ success: boolean; data: { user: { role: string } } }>(
+          '/api/v1/auth/login',
+          { email, password },
+        );
+        if (res.data?.user?.role) {
+          resolvedRole = res.data.user.role as UserRole;
+        }
+      } catch (apiErr: any) {
+        if (apiErr?.status === 401 || apiErr?.status === 403) {
+          throw new Error(apiErr.message || 'Invalid credentials or inactive account.');
+        }
+        // Fallback to demo account matching for offline capability
+        const match = DEMO_ACCOUNTS.find((a) => a.email.toLowerCase() === email.toLowerCase());
+        if (match) {
+          resolvedRole = match.role as UserRole;
+        } else {
+          throw apiErr;
+        }
       }
+
+      switchPersona(resolvedRole);
       addToast({
         title: 'Authentication Successful',
-        message: 'Welcome to AICTE VIGIL Executive Portal.',
+        message: `Welcome to AICTE VIGIL Executive Portal. Signed in as ${resolvedRole}.`,
         type: 'success',
       });
-      navigate(from, { replace: true });
+
+      const destination = from || ROLE_LANDING_PAGES[resolvedRole] || '/dashboard';
+      navigate(destination, { replace: true });
     } catch (err: any) {
-      setError(err?.message || 'Authentication error.');
+      setError(err?.message || 'Authentication error. Please check your credentials.');
     } finally {
       setLoading(false);
     }
   };
 
-  const handleSelectDemo = (account: (typeof DEMO_ACCOUNTS)[0]) => {
+  const handleSelectDemo = async (account: (typeof DEMO_ACCOUNTS)[0]) => {
+    setEmail(account.email);
+    setPassword('Password@123');
+    setError(null);
     setLoading(true);
-    switchPersona(account.role as UserRole);
-    navigate(from, { replace: true });
-    setLoading(false);
+
+    try {
+      try {
+        await api.post('/api/v1/auth/login', {
+          email: account.email,
+          password: 'Password@123',
+        });
+      } catch {
+        // Fallback for offline mode
+      }
+      switchPersona(account.role as UserRole);
+      addToast({
+        title: 'Demo Session Active',
+        message: `Logged in as ${account.name} (${account.role})`,
+        type: 'info',
+      });
+      const destination = from || ROLE_LANDING_PAGES[account.role] || '/dashboard';
+      navigate(destination, { replace: true });
+    } catch (err: any) {
+      setError(err?.message || 'Failed to switch demo persona');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

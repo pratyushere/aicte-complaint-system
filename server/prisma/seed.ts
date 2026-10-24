@@ -247,7 +247,25 @@ async function main() {
     },
   });
 
-  console.log(`  ✓ Created 7 fictional users representing all required roles with password 'Password@123'`);
+  // 8. Inactive Account for Validation Testing
+  await prisma.user.upsert({
+    where: { email: 'inactive.demo@fictional-aicte.example' },
+    update: {
+      role: 'REGULATION_BUREAU_OFFICER',
+      passwordHash: defaultPasswordHash,
+      isActive: false,
+    },
+    create: {
+      email: 'inactive.demo@fictional-aicte.example',
+      name: '[FICTIONAL] Inactive Test Officer',
+      role: 'REGULATION_BUREAU_OFFICER',
+      bureauId: bureauRB.id,
+      isActive: false,
+      passwordHash: defaultPasswordHash,
+    },
+  });
+
+  console.log(`  ✓ Created fictional users representing all required roles + inactive test account with password 'Password@123'`);
 
   // ---- Institutions (FICTIONAL) ----
   console.log('Creating fictional institutions...');
