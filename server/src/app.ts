@@ -18,7 +18,7 @@ export function createApp(): express.Application {
   app.use(helmet());
   app.use(cors({
     origin: process.env.NODE_ENV === 'production'
-      ? process.env.CORS_ORIGIN
+      ? (process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',').map((o) => o.trim()) : true)
       : ['http://localhost:5173', 'http://localhost:3000'],
     credentials: true,
   }));

@@ -36,11 +36,13 @@ export function getCachedCsrfToken(): string | null {
   return null;
 }
 
+const API_BASE = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');
+
 export async function apiRequest<T = any>(
   endpoint: string,
   options: RequestInit = {},
 ): Promise<T> {
-  const url = endpoint.startsWith('http') ? endpoint : endpoint;
+  const url = endpoint.startsWith('http') ? endpoint : `${API_BASE}${endpoint}`;
 
   const headers = new Headers(options.headers || {});
   if (!headers.has('Content-Type') && !(options.body instanceof FormData)) {
