@@ -111,6 +111,8 @@ interface AppStoreContextType {
   setCommandPaletteOpen: (open: boolean) => void;
   trackModalOpen: boolean;
   setTrackModalOpen: (open: boolean) => void;
+  mobileMenuOpen: boolean;
+  setMobileMenuOpen: (open: boolean) => void;
 }
 
 const AppStoreContext = createContext<AppStoreContextType | undefined>(undefined);
@@ -209,6 +211,7 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
   const [trackModalOpen, setTrackModalOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Active persona
   const [currentRole, setCurrentRole] = useState<UserRole>('REGULATION_BUREAU_OFFICER');
@@ -809,6 +812,8 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
         setCommandPaletteOpen,
         trackModalOpen,
         setTrackModalOpen,
+        mobileMenuOpen,
+        setMobileMenuOpen,
       }}
     >
       {children}

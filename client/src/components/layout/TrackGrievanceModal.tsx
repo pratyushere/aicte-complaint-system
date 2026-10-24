@@ -47,7 +47,7 @@ export function TrackGrievanceModal() {
           <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
             Grievance Tracking Number *
           </label>
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <input
               type="text"
               required
@@ -57,15 +57,21 @@ export function TrackGrievanceModal() {
                 if (result !== undefined) setResult(undefined);
               }}
               placeholder="e.g. RB-2024-00147 or PGRC-2024-00389"
-              className="flex-1 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm bg-slate-50 border border-slate-300 font-mono text-slate-900 focus:outline-none focus:border-blue-600 focus:bg-white transition-colors"
+              className="flex-1 px-3.5 py-2.5 rounded-xl text-base sm:text-sm bg-slate-50 border border-slate-300 font-mono text-slate-900 focus:outline-none focus:border-blue-600 focus:bg-white transition-colors"
             />
-            <Button variant="primary" type="submit" size="sm" icon={<Search className="w-3.5 h-3.5" />}>
-              Search
+            <Button
+              variant="primary"
+              type="submit"
+              size="md"
+              className="w-full sm:w-auto justify-center active:scale-95 touch-manipulation"
+              icon={<Search className="w-4 h-4" />}
+            >
+              Search Status
             </Button>
           </div>
 
-          <div className="flex flex-wrap items-center gap-1.5 mt-2 text-[11px] text-slate-500">
-            <span>Quick samples:</span>
+          <div className="flex flex-wrap items-center gap-1.5 mt-2.5 text-[11px] text-slate-500">
+            <span className="font-medium">Quick samples:</span>
             {quickSamples.map((sample) => (
               <button
                 key={sample}
@@ -77,7 +83,7 @@ export function TrackGrievanceModal() {
                   );
                   setResult(found || null);
                 }}
-                className="font-mono text-blue-700 hover:text-blue-900 hover:underline px-1.5 py-0.5 rounded bg-blue-50 border border-blue-200 cursor-pointer"
+                className="font-mono text-blue-700 hover:text-blue-900 hover:underline px-2 py-1 rounded-lg bg-blue-50 border border-blue-200 cursor-pointer active:scale-95 touch-manipulation"
               >
                 {sample}
               </button>

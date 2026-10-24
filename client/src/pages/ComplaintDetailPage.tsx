@@ -257,29 +257,29 @@ export function ComplaintDetailPage() {
       </Card>
 
       {/* Tabs Navigation */}
-      <div className="flex border-b border-slate-200 gap-2 text-xs font-semibold">
+      <div className="flex border-b border-slate-200 gap-1 sm:gap-2 text-xs font-semibold overflow-x-auto whitespace-nowrap scrollbar-none pb-0.5">
         {[
-          { id: 'OVERVIEW', label: 'Case Dossier & Institution', icon: FileText },
-          { id: 'TIMELINE', label: `Investigation Audit Trail (${complaintTimeline.length})`, icon: Clock },
+          { id: 'OVERVIEW', label: 'Case Dossier', icon: FileText },
+          { id: 'TIMELINE', label: `Timeline (${complaintTimeline.length})`, icon: Clock },
           {
             id: 'OVERLAPS',
-            label: `AI Overlap Radar (${associatedOverlaps.length})`,
+            label: `AI Overlaps (${associatedOverlaps.length})`,
             icon: Sparkles,
             badge: associatedOverlaps.length > 0,
           },
-          { id: 'REMARKS', label: `Officer Remarks (${complaintRemarks.length})`, icon: MessageSquare },
+          { id: 'REMARKS', label: `Remarks (${complaintRemarks.length})`, icon: MessageSquare },
         ].map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id as any)}
             className={cn(
-              'pb-3 px-3.5 text-xs font-medium border-b-2 transition-all cursor-pointer flex items-center gap-2',
+              'pb-3 px-3 sm:px-3.5 text-xs font-medium border-b-2 transition-all cursor-pointer flex items-center gap-1.5 shrink-0 active:scale-95 touch-manipulation',
               activeTab === tab.id
                 ? 'border-blue-600 text-blue-600 font-bold'
                 : 'border-transparent text-slate-500 hover:text-slate-800',
             )}
           >
-            <tab.icon className="w-4 h-4" />
+            <tab.icon className="w-4 h-4 shrink-0" />
             <span>{tab.label}</span>
           </button>
         ))}

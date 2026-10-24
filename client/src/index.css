@@ -82,6 +82,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -92,6 +93,24 @@ body {
   line-height: 1.5;
   font-size: 14px;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Mobile Touch Optimization */
+button, a, input, select, textarea {
+  touch-action: manipulation;
+}
+
+/* Prevent unwanted browser auto-zoom on iOS Safari when tapping inputs */
+@media screen and (max-width: 640px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
 }
 
 /* ---- Scrollbar ---- */

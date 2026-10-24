@@ -277,14 +277,71 @@ export function InstitutionsPage() {
 
       {/* Render View */}
       {viewMode === 'TABLE' ? (
-        <DataTable
-          columns={columns}
-          data={filtered}
-          keyExtractor={(r) => r.id}
-          onRowClick={(r) => navigate(`/institutions/${r.id}`)}
-          emptyMessage="No institutions match your search."
-          emptySubtext="Try adjusting your search criteria or discipline filter."
-        />
+        <>
+          {/* Mobile Cards (< md screens) */}
+          <div className="md:hidden space-y-3">
+            {filtered.length === 0 ? (
+              <div className="p-8 text-center bg-white rounded-xl border border-slate-200 text-xs text-slate-500">
+                No institutions match your search.
+              </div>
+            ) : (
+              filtered.map((inst) => {
+                const count = complaints.filter((c) => c.institutionId === inst.id).length;
+                return (
+                  <div
+                    key={inst.id}
+                    onClick={() => navigate(`/institutions/${inst.id}`)}
+                    className="p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-300 shadow-xs active:scale-[0.98] transition-all cursor-pointer space-y-2.5"
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="font-mono text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                        {inst.aicteId}
+                      </span>
+                      <Badge className={APPROVAL_STATUS_COLORS[inst.approvalStatus]} dot>
+                        {APPROVAL_STATUS_LABELS[inst.approvalStatus]}
+                      </Badge>
+                    </div>
+
+                    <div>
+                      <h4 className="text-xs font-bold text-slate-900 leading-snug line-clamp-2">
+                        {inst.name}
+                      </h4>
+                      <p className="text-[11px] text-slate-500 mt-1 flex items-center gap-1">
+                        <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                        <span>{inst.city}, {inst.state}</span>
+                      </p>
+                    </div>
+
+                    <div className="flex items-center justify-between text-[11px] pt-2 border-t border-slate-100 text-slate-500">
+                      <span className="font-semibold text-slate-700">{INSTITUTION_TYPE_LABELS[inst.type]}</span>
+                      <span
+                        className={
+                          count === 0
+                            ? 'font-semibold text-[10px] px-2 py-0.5 rounded-full border bg-emerald-50 text-emerald-700 border-emerald-200'
+                            : 'font-semibold text-[10px] px-2 py-0.5 rounded-full border bg-amber-50 text-amber-700 border-amber-200'
+                        }
+                      >
+                        {count} Grievances
+                      </span>
+                    </div>
+                  </div>
+                );
+              })
+            )}
+          </div>
+
+          {/* Desktop Table (>= md screens) */}
+          <div className="hidden md:block">
+            <DataTable
+              columns={columns}
+              data={filtered}
+              keyExtractor={(r) => r.id}
+              onRowClick={(r) => navigate(`/institutions/${r.id}`)}
+              emptyMessage="No institutions match your search."
+              emptySubtext="Try adjusting your search criteria or discipline filter."
+            />
+          </div>
+        </>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((inst) => {

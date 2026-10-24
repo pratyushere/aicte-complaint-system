@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { Header } from './Header';
 import { TrackGrievanceModal } from './TrackGrievanceModal';
+import { MobileBottomNav } from './MobileBottomNav';
 import { ToastContainer, CommandPalette } from '@/components/ui';
 
 export function AppShell() {
@@ -9,8 +10,8 @@ export function AppShell() {
       {/* 1. Official Government Header & Royal Blue Navigation Bar */}
       <Header />
 
-      {/* 2. Main Portal Content Canvas */}
-      <main className="flex-1 w-full">
+      {/* 2. Main Portal Content Canvas (pb-20 on mobile ensures bottom navigation doesn't hide content) */}
+      <main className="flex-1 w-full pb-20 lg:pb-0">
         <Outlet />
       </main>
 
@@ -80,10 +81,11 @@ export function AppShell() {
         </div>
       </footer>
 
-      {/* Global Interactive Overlays */}
+      {/* Global Interactive Overlays & Mobile Bottom Navigation */}
       <ToastContainer />
       <CommandPalette />
       <TrackGrievanceModal />
+      <MobileBottomNav />
     </div>
   );
 }

@@ -444,7 +444,52 @@ export function DashboardPage() {
           </div>
         </div>
 
-        <div className="overflow-x-auto">
+        {/* Mobile Cards View (< md screens) */}
+        <div className="md:hidden p-3 space-y-2.5">
+          {filteredComplaints.slice(0, 5).map((c) => {
+            const days = c.deadline ? daysUntil(c.deadline) : null;
+            return (
+              <div
+                key={c.id}
+                onClick={() => navigate(`/complaints/${c.id}`)}
+                className="p-3.5 rounded-xl border border-slate-200 bg-white hover:border-blue-300 shadow-2xs active:scale-[0.98] transition-all cursor-pointer space-y-2"
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-mono text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                    {c.trackingNumber}
+                  </span>
+                  <Badge className={STATUS_COLORS[c.status]} dot>
+                    {STATUS_LABELS[c.status]}
+                  </Badge>
+                </div>
+                <div>
+                  <h5 className="text-xs font-bold text-slate-900 leading-snug line-clamp-2">
+                    {c.subject}
+                  </h5>
+                  <p className="text-[11px] text-slate-500 mt-0.5 line-clamp-1">
+                    {c.institution?.name}
+                  </p>
+                </div>
+                <div className="flex items-center justify-between text-[11px] pt-2 border-t border-slate-100 text-slate-500">
+                  <span className="font-semibold text-slate-700">{c.bureau} Bureau</span>
+                  <div className="flex items-center gap-2">
+                    {c.deadline && (
+                      <span className={cn('text-[10px]', days !== null && days <= 7 ? 'text-rose-600 font-bold' : 'text-slate-400')}>
+                        Due: {formatDate(c.deadline)}
+                      </span>
+                    )}
+                    <Badge className={PRIORITY_COLORS[c.priority]}>
+                      {PRIORITY_LABELS[c.priority]}
+                    </Badge>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Desktop Table View (>= md screens) */}
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-slate-200 bg-slate-50/75 text-left">

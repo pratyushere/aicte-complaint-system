@@ -379,14 +379,71 @@ export function ComplaintsPage() {
 
       {/* Render View Mode */}
       {viewMode === 'TABLE' && (
-        <DataTable
-          columns={columns}
-          data={filtered}
-          keyExtractor={(r) => r.id}
-          onRowClick={(r) => navigate(`/complaints/${r.id}`)}
-          emptyMessage="No complaints match your active filters."
-          emptySubtext="Try adjusting your search criteria, clearing bureau or status filters."
-        />
+        <>
+          {/* Mobile Card Dossier List (< md screens) */}
+          <div className="md:hidden space-y-3">
+            {filtered.length === 0 ? (
+              <div className="p-8 text-center bg-white rounded-xl border border-slate-200 text-xs text-slate-500">
+                No complaints match your active filters.
+              </div>
+            ) : (
+              filtered.map((c) => {
+                const days = c.deadline ? daysUntil(c.deadline) : null;
+                return (
+                  <div
+                    key={c.id}
+                    onClick={() => navigate(`/complaints/${c.id}`)}
+                    className="p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-300 shadow-xs active:scale-[0.98] transition-all cursor-pointer space-y-2.5"
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="font-mono text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                        {c.trackingNumber}
+                      </span>
+                      <Badge className={STATUS_COLORS[c.status]} dot>
+                        {STATUS_LABELS[c.status]}
+                      </Badge>
+                    </div>
+
+                    <div>
+                      <h4 className="text-xs font-bold text-slate-900 leading-snug line-clamp-2">
+                        {c.subject}
+                      </h4>
+                      <p className="text-[11px] text-slate-500 mt-1 line-clamp-1">
+                        {c.institution?.name}
+                      </p>
+                    </div>
+
+                    <div className="flex items-center justify-between text-[11px] pt-2 border-t border-slate-100 text-slate-500">
+                      <span className="font-semibold text-slate-700">{c.bureau} Bureau</span>
+                      <div className="flex items-center gap-2">
+                        {c.deadline && (
+                          <span className={cn('text-[10px]', days !== null && days <= 7 ? 'text-rose-600 font-bold' : 'text-slate-400')}>
+                            Due: {formatDate(c.deadline)}
+                          </span>
+                        )}
+                        <Badge className={PRIORITY_COLORS[c.priority]}>
+                          {PRIORITY_LABELS[c.priority]}
+                        </Badge>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            )}
+          </div>
+
+          {/* Desktop Table View (>= md screens) */}
+          <div className="hidden md:block">
+            <DataTable
+              columns={columns}
+              data={filtered}
+              keyExtractor={(r) => r.id}
+              onRowClick={(r) => navigate(`/complaints/${r.id}`)}
+              emptyMessage="No complaints match your active filters."
+              emptySubtext="Try adjusting your search criteria, clearing bureau or status filters."
+            />
+          </div>
+        </>
       )}
 
       {viewMode === 'GRID' && (
