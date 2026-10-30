@@ -6,6 +6,7 @@
    real AICTE institutions, complaints, or individuals.
    ============================================================ */
 
+import 'dotenv/config';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 

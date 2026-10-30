@@ -56,7 +56,7 @@ export function ProtectedRoute({ allowedRoles }: ProtectedRouteProps) {
 
         <div className="mt-6 flex items-center gap-3">
           <Link
-            to="/"
+            to="/dashboard"
             className="inline-flex items-center gap-2 rounded-lg bg-navy-700 px-4 py-2 text-sm font-medium text-white shadow-xs hover:bg-navy-800 transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />

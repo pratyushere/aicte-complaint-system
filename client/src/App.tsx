@@ -23,10 +23,12 @@ export default function App() {
     <BrowserRouter>
       <AppStoreProvider>
         <Routes>
+          {/* Default root path shows login */}
+          <Route path="/" element={<LoginPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route element={<AppShell />}>
-            <Route path="/" element={<CitizenHomePage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/citizen" element={<CitizenHomePage />} />
             <Route path="/institutions" element={<InstitutionsPage />} />
             <Route path="/institutions/:id" element={<InstitutionDetailPage />} />
             <Route path="/complaints" element={<ComplaintsPage />} />

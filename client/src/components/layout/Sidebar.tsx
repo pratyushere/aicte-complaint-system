@@ -38,7 +38,7 @@ export function Sidebar({
     {
       label: 'Core Intelligence',
       items: [
-        { label: 'Executive Dashboard', path: '/', icon: LayoutDashboard },
+        { label: 'Executive Dashboard', path: '/dashboard', icon: LayoutDashboard },
       ],
     },
     {

@@ -17,7 +17,8 @@ import {
 } from 'lucide-react';
 
 const navigationItems = [
-  { label: 'Executive Dashboard', path: '/', icon: Layers, category: 'Navigation' },
+  { label: 'Executive Dashboard', path: '/dashboard', icon: Layers, category: 'Navigation' },
+  { label: 'Citizen Portal', path: '/citizen', icon: Building2, category: 'Navigation' },
   { label: 'Complaints Registry', path: '/complaints', icon: FileText, category: 'Navigation' },
   { label: 'Register New Grievance', path: '/complaints/new', icon: Plus, category: 'Actions' },
   { label: 'Overlap Detection Radar', path: '/overlaps', icon: AlertTriangle, category: 'Navigation' },

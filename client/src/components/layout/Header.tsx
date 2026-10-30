@@ -88,7 +88,7 @@ export function Header() {
   });
 
   const navLinks = [
-    { label: 'Home', path: '/', icon: Home },
+    { label: 'Citizen Portal', path: '/citizen', icon: Home },
     { label: 'Register Grievance', path: '/complaints/new', icon: Plus },
     { label: 'Grievance Registry', path: '/complaints', icon: FileText },
     { label: 'Institutions', path: '/institutions', icon: Building2 },
@@ -101,8 +101,7 @@ export function Header() {
   ];
 
   const isCurrentActive = (path: string) => {
-    if (path === '/') return location.pathname === '/';
-    return location.pathname.startsWith(path);
+    return location.pathname === path || (path !== '/' && location.pathname.startsWith(path));
   };
 
   return (
@@ -111,7 +110,7 @@ export function Header() {
       <div className="bg-white border-b border-slate-200/90">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 py-2 sm:py-3.5 flex items-center justify-between gap-2 sm:gap-4">
           {/* Left: AICTE Circular Emblem + Bilingual Portal Title */}
-          <Link to="/" className="flex items-center gap-2 sm:gap-3.5 group cursor-pointer min-w-0">
+          <Link to="/dashboard" className="flex items-center gap-2 sm:gap-3.5 group cursor-pointer min-w-0">
             {/* National AICTE Emblem Badge */}
             <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-gradient-to-tr from-amber-500 via-amber-400 to-[#0c3978] p-0.5 shrink-0 shadow-sm flex items-center justify-center group-hover:scale-105 transition-transform">
               <div className="w-full h-full bg-white rounded-full flex items-center justify-center shadow-inner">

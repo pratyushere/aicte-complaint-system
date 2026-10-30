@@ -8,7 +8,7 @@ export function MobileBottomNav() {
   const { setTrackModalOpen, mobileMenuOpen, setMobileMenuOpen, unreadNotificationCount, stats } =
     useAppStore();
 
-  const isHome = location.pathname === '/';
+  const isDashboard = location.pathname === '/dashboard';
   const isComplaints = location.pathname.startsWith('/complaints') && location.pathname !== '/complaints/new';
 
   const hasAlertBadge = unreadNotificationCount > 0 || stats.pendingOverlaps > 0;
@@ -20,19 +20,19 @@ export function MobileBottomNav() {
       aria-label="Mobile Navigation"
     >
       <div className="grid grid-cols-5 items-center justify-around h-15 px-2 max-w-md mx-auto">
-        {/* 1. Home */}
+        {/* 1. Dashboard */}
         <Link
-          to="/"
+          to="/dashboard"
           onClick={() => setMobileMenuOpen(false)}
           className={cn(
             'flex flex-col items-center justify-center py-1 gap-1 text-[10px] font-semibold transition-colors active:scale-95 touch-manipulation',
-            isHome ? 'text-[#0c3978]' : 'text-slate-500 hover:text-slate-800',
+            isDashboard ? 'text-[#0c3978]' : 'text-slate-500 hover:text-slate-800',
           )}
         >
-          <div className={cn('p-1 rounded-xl transition-colors', isHome && 'bg-blue-50')}>
-            <Home className={cn('w-5 h-5', isHome ? 'text-[#0c3978] stroke-[2.4]' : 'text-slate-500')} />
+          <div className={cn('p-1 rounded-xl transition-colors', isDashboard && 'bg-blue-50')}>
+            <Home className={cn('w-5 h-5', isDashboard ? 'text-[#0c3978] stroke-[2.4]' : 'text-slate-500')} />
           </div>
-          <span>Home</span>
+          <span>Dashboard</span>
         </Link>
 
         {/* 2. Instant Track Grievance Status Modal */}
