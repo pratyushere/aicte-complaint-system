@@ -67,7 +67,7 @@ export function OverlapsPage() {
       <PageHeader
         title="AI Overlap Detection Radar"
         subtitle="Algorithmic cross-bureau correlation engine preventing duplicate investigations and fragmented redressal"
-        breadcrumbs={[{ label: 'Dashboard', href: '/' }, { label: 'Overlap Radar' }]}
+        breadcrumbs={[{ label: 'Dashboard', href: '/dashboard' }, { label: 'Overlap Radar' }]}
         actions={
           <div className="flex items-center gap-2">
             <Button

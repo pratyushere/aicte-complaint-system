@@ -42,7 +42,7 @@ export function SettingsPage() {
       <PageHeader
         title="System Configuration & Preferences"
         subtitle="Manage officer identity, AI overlap sensitivity thresholds, statutory SLA timing rules, and security policies"
-        breadcrumbs={[{ label: 'Dashboard', href: '/' }, { label: 'Settings' }]}
+        breadcrumbs={[{ label: 'Dashboard', href: '/dashboard' }, { label: 'Settings' }]}
       />
 
       <form onSubmit={handleSave} className="space-y-6">

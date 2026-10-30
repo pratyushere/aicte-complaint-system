@@ -4,14 +4,16 @@ import { TrackGrievanceModal } from './TrackGrievanceModal';
 import { MobileBottomNav } from './MobileBottomNav';
 import { ToastContainer, CommandPalette } from '@/components/ui';
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 export function AppShell() {
   return (
     <div className="min-h-screen bg-[#f4f7fb] flex flex-col font-sans text-slate-800 antialiased selection:bg-blue-100 selection:text-blue-900">
       {/* 1. Official Government Header & Royal Blue Navigation Bar */}
       <Header />
 
-      {/* 2. Main Portal Content Canvas (pb-20 on mobile ensures bottom navigation doesn't hide content) */}
-      <main className="flex-1 w-full pb-20 lg:pb-0">
+      {/* 2. Main Portal Content Canvas */}
+      <main className="flex-1 w-full pb-6 lg:pb-8">
         <Outlet />
       </main>
 
@@ -62,11 +64,11 @@ export function AppShell() {
           </div>
         </div>
 
-        {/* Bottom copyright & statutory strip */}
-        <div className="bg-slate-900 text-slate-400 py-3.5 px-4 sm:px-6">
+        {/* Bottom copyright & statutory strip (with pb-20 on mobile to not be obscured by fixed bottom nav) */}
+        <div className="bg-slate-900 text-slate-400 py-3.5 px-4 sm:px-6 pb-20 lg:pb-3.5">
           <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left text-[11px]">
             <p>
-              © {new Date().getFullYear()} All India Council for Technical Education (AICTE), Ministry of Education, Government of India.
+              © {CURRENT_YEAR} All India Council for Technical Education (AICTE), Ministry of Education, Government of India.
             </p>
             <div className="flex items-center gap-4 text-slate-400">
               <span className="hover:text-slate-200 cursor-pointer">Privacy Policy</span>

@@ -90,17 +90,16 @@ export function ComplaintsPage() {
       `"${formatDate(c.createdAt)}"`,
     ]);
 
-    const csvContent =
-      'data:text/csv;charset=utf-8,' +
-      [headers.join(','), ...rows.map((r) => r.join(','))].join('\n');
-
-    const encodedUri = encodeURI(csvContent);
+    const csvContent = [headers.join(','), ...rows.map((r) => r.join(','))].join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
-    link.setAttribute('href', encodedUri);
+    link.setAttribute('href', url);
     link.setAttribute('download', `aicte-complaints-registry-${Date.now()}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    URL.revokeObjectURL(url);
 
     addToast({
       title: 'Registry Exported',
@@ -247,7 +246,7 @@ export function ComplaintsPage() {
       <PageHeader
         title="Grievance Registry"
         subtitle={`Centralized repository of technical education complaints (${filtered.length} matching cases)`}
-        breadcrumbs={[{ label: 'Dashboard', href: '/' }, { label: 'Complaints' }]}
+        breadcrumbs={[{ label: 'Dashboard', href: '/dashboard' }, { label: 'Complaints' }]}
         actions={
           <div className="flex items-center gap-2">
             {/* View Mode Toggle */}

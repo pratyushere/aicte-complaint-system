@@ -116,7 +116,7 @@ export function CoordinationPage() {
       <PageHeader
         title="Inter-Bureau Coordination Hub"
         subtitle="Collaborative multi-agency workspace synchronizing Regulation Bureau (RB) and Public Grievance Cell (PGRC)"
-        breadcrumbs={[{ label: 'Dashboard', href: '/' }, { label: 'Coordination' }]}
+        breadcrumbs={[{ label: 'Dashboard', href: '/dashboard' }, { label: 'Coordination' }]}
         actions={
           <div className="flex items-center gap-2">
             <Button

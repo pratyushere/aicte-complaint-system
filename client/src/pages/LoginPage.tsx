@@ -177,8 +177,8 @@ export function LoginPage() {
       </div>
 
       {/* Right Content: Login Form & Demo Persona Switcher */}
-      <div className="flex w-full lg:w-1/2 flex-col justify-center px-6 py-12 sm:px-12 lg:px-16 overflow-y-auto bg-black">
-        <div className="mx-auto w-full max-w-md">
+      <div className="flex w-full lg:w-1/2 flex-col justify-start lg:justify-center px-4 py-8 sm:px-12 lg:px-16 overflow-y-auto bg-black min-h-screen">
+        <div className="mx-auto w-full max-w-md my-auto">
           {/* Mobile Header */}
           <div className="mb-8 lg:hidden flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-900 border border-zinc-800 text-amber-400 shadow-md">
@@ -246,7 +246,7 @@ export function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 py-2.5 px-4 text-sm font-bold text-black shadow-lg shadow-orange-500/20 focus:outline-none focus:ring-2 focus:ring-amber-500 disabled:opacity-60 transition-all cursor-pointer"
+              className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 py-2.5 px-4 text-sm font-bold text-black shadow-lg shadow-orange-500/20 focus:outline-none focus:ring-2 focus:ring-amber-500 disabled:opacity-60 transition-all cursor-pointer active:scale-[0.99] touch-manipulation"
             >
               <span>Sign In to Portal</span>
               <ArrowRight className="h-4 w-4" />
@@ -272,7 +272,7 @@ export function LoginPage() {
                     type="button"
                     onClick={() => handleSelectDemo(account)}
                     disabled={loading}
-                    className="flex w-full items-start justify-between rounded-xl border border-zinc-900 bg-zinc-950 p-3 text-left hover:border-zinc-800 hover:bg-zinc-900/60 transition-all group cursor-pointer"
+                    className="flex w-full items-start justify-between rounded-xl border border-zinc-900 bg-zinc-950 p-3 text-left hover:border-zinc-800 hover:bg-zinc-900/60 transition-all group cursor-pointer active:scale-[0.98] touch-manipulation"
                   >
                     <div className="min-w-0 pr-2">
                       <div className="flex items-center gap-2">

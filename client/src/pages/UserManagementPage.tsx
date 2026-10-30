@@ -227,7 +227,7 @@ export function UserManagementPage() {
       <PageHeader
         title="User Directory & Role-Based Access Control"
         subtitle="Manage administrative credentials, bureau scopes, and test multi-tier RBAC authorization"
-        breadcrumbs={[{ label: 'Dashboard', href: '/' }, { label: 'User Management' }]}
+        breadcrumbs={[{ label: 'Dashboard', href: '/dashboard' }, { label: 'User Management' }]}
         actions={
           <Button
             variant="primary"

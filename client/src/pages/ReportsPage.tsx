@@ -91,7 +91,7 @@ export function ReportsPage() {
       <PageHeader
         title="Regulatory Audits & Performance Intelligence"
         subtitle="Comprehensive cross-bureau analytics, resolution velocity metrics, and compliance oversight reports"
-        breadcrumbs={[{ label: 'Dashboard', href: '/' }, { label: 'Reports & Audits' }]}
+        breadcrumbs={[{ label: 'Dashboard', href: '/dashboard' }, { label: 'Reports & Audits' }]}
         actions={
           <div className="flex items-center gap-2">
             {/* Timeframe pill selector */}

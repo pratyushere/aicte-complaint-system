@@ -180,7 +180,7 @@ export function InstitutionsPage() {
       <PageHeader
         title="Institution Directory"
         subtitle={`Official registry of technical colleges, universities & polytechnics (${filtered.length} institutes indexed)`}
-        breadcrumbs={[{ label: 'Dashboard', href: '/' }, { label: 'Institutions' }]}
+        breadcrumbs={[{ label: 'Dashboard', href: '/dashboard' }, { label: 'Institutions' }]}
         actions={
           <div className="flex items-center gap-2">
             {/* View Mode Toggle */}

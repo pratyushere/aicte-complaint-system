@@ -31,7 +31,7 @@ export function InstitutionDetailPage() {
         <PageHeader
           title="Institution Not Found"
           breadcrumbs={[
-            { label: 'Dashboard', href: '/' },
+            { label: 'Dashboard', href: '/dashboard' },
             { label: 'Institutions', href: '/institutions' },
             { label: 'Not Found' },
           ]}
@@ -61,7 +61,7 @@ export function InstitutionDetailPage() {
         title={institution.name}
         subtitle={`Permanent AICTE ID: ${institution.aicteId} • ${institution.city}, ${institution.state}`}
         breadcrumbs={[
-          { label: 'Dashboard', href: '/' },
+          { label: 'Dashboard', href: '/dashboard' },
           { label: 'Institutions', href: '/institutions' },
           { label: institution.name },
         ]}

@@ -279,10 +279,10 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
     const pendingOverlaps = overlapAlerts.filter((a) => a.status === 'PENDING').length;
 
     // Check deadlines approaching (within 7 days)
-    const now = new Date();
+    const nowMs = Date.now();
     const approachingDeadlines = complaints.filter((c) => {
       if (!c.deadline || ['RESOLVED', 'CLOSED'].includes(c.status)) return false;
-      const diff = new Date(c.deadline).getTime() - now.getTime();
+      const diff = new Date(c.deadline).getTime() - nowMs;
       return diff > 0 && diff <= 7 * 24 * 60 * 60 * 1000;
     }).length;
 

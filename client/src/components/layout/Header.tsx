@@ -76,9 +76,13 @@ export function Header() {
   }, []);
 
   // Close mobile drawer on route change
+  const prevPathnameRef = useRef(location.pathname);
   useEffect(() => {
-    setMobileMenuOpen(false);
-    setMobilePersonaDrawer(false);
+    if (prevPathnameRef.current !== location.pathname) {
+      prevPathnameRef.current = location.pathname;
+      setMobileMenuOpen(false);
+      setMobilePersonaDrawer(false);
+    }
   }, [location.pathname, setMobileMenuOpen]);
 
   const filteredNotifs = notifications.filter((n) => {

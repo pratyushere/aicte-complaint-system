@@ -47,7 +47,7 @@ export function NotificationsPage() {
       <PageHeader
         title="Alerts & Statutory Notifications"
         subtitle={`System notifications, SLA warnings, and AI overlap detection dispatches (${unreadNotificationCount} unread)`}
-        breadcrumbs={[{ label: 'Dashboard', href: '/' }, { label: 'Notifications' }]}
+        breadcrumbs={[{ label: 'Dashboard', href: '/dashboard' }, { label: 'Notifications' }]}
         actions={
           <div className="flex items-center gap-2">
             <Button

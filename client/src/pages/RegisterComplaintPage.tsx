@@ -98,7 +98,7 @@ export function RegisterComplaintPage() {
           title="Grievance Registered Successfully"
           subtitle="Statutory intake recorded and indexed in AICTE Central Repository"
           breadcrumbs={[
-            { label: 'Dashboard', href: '/' },
+            { label: 'Dashboard', href: '/dashboard' },
             { label: 'Complaints', href: '/complaints' },
             { label: 'Registration Receipt' },
           ]}
@@ -257,7 +257,7 @@ export function RegisterComplaintPage() {
         title="Grievance Registration Console"
         subtitle="Intake portal for technical education compliance violations, fee disputes, ragging & institutional complaints"
         breadcrumbs={[
-          { label: 'Dashboard', href: '/' },
+          { label: 'Dashboard', href: '/dashboard' },
           { label: 'Complaints', href: '/complaints' },
           { label: 'New Grievance' },
         ]}

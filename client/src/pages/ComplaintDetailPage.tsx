@@ -73,7 +73,7 @@ export function ComplaintDetailPage() {
         <PageHeader
           title="Complaint Not Found"
           breadcrumbs={[
-            { label: 'Dashboard', href: '/' },
+            { label: 'Dashboard', href: '/dashboard' },
             { label: 'Complaints', href: '/complaints' },
             { label: 'Not Found' },
           ]}
@@ -141,7 +141,7 @@ export function ComplaintDetailPage() {
         title={complaint.trackingNumber}
         subtitle={complaint.subject}
         breadcrumbs={[
-          { label: 'Dashboard', href: '/' },
+          { label: 'Dashboard', href: '/dashboard' },
           { label: 'Complaints', href: '/complaints' },
           { label: complaint.trackingNumber },
         ]}
